@@ -1,4 +1,4 @@
-# Adventurer's Club CMS App
+# Adventurer's Club App
 
 This is an attempt to create a CMS ap for an adventurer's club. This effort indends to making keeping track of awards, attendance, etc a bit easier on the director staff.
 
