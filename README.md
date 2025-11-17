@@ -1,6 +1,6 @@
 # Adventurer's Club App
 
-This is an attempt to create a CMS ap for an adventurer's club. This effort indends to making keeping track of awards, attendance, etc a bit easier on the director staff.
+This is an attempt to create a CMS app for an adventurer's club. This effort indends to making keeping track of awards, attendance, etc a bit easier on the director staff.
 
 Making this app open source allows for other Adventurer/Pathfinder Clubs to use it in the future.
 
