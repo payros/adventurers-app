@@ -1,0 +1,1 @@
+-- Insert read-only seed data for static tables such as awards, principal user, etc
