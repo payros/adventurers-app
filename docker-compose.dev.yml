@@ -57,7 +57,7 @@ services:
     networks:
       - my_network
     ports:
-      - ${POSTGRES_PORT}:5432
+      - 5433:5432
 
   # Add more containers below
 
