@@ -1,18 +1,18 @@
 import '../styles/styles.scss'
+import { Provider } from "@/components/ui/provider"
 
 export const metadata = {
   title: 'Home',
   description: 'Welcome to Next.js',
 }
 
-export default function RootLayout({
-  // Layouts must accept a children prop.
-  // This will be populated with nested layouts or pages
-  children,
-}) {
+export default function RootLayout({ children }) {
+
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html suppressHydrationWarning={true}>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   )
 }

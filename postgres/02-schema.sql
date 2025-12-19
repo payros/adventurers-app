@@ -40,7 +40,7 @@ CREATE TYPE "staff_role" AS ENUM (
 );
 
 CREATE TABLE "users" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "email" varchar UNIQUE NOT NULL,
   "password" varchar NOT NULL,
   "first_name" varchar,
@@ -49,7 +49,7 @@ CREATE TABLE "users" (
 );
 
 CREATE TABLE "staff" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "first_name" varchar NOT NULL,
   "last_name" varchar NOT NULL,
   "email" varchar,
@@ -59,7 +59,7 @@ CREATE TABLE "staff" (
 );
 
 CREATE TABLE "parents" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "first_name" varchar NOT NULL,
   "last_name" varchar NOT NULL,
   "email" varchar,
@@ -69,7 +69,7 @@ CREATE TABLE "parents" (
 );
 
 CREATE TABLE "children" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "first_name" varchar NOT NULL,
   "last_name" varchar NOT NULL,
   "allergies" varchar,
@@ -80,14 +80,14 @@ CREATE TABLE "children" (
 );
 
 CREATE TABLE "parents_children" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "parent_id" integer NOT NULL,
   "child_id" integer NOT NULL,
   "created_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "awards" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "name" varchar,
   "level" adventurer_class,
   "patch_image_url" varchar,
@@ -97,15 +97,16 @@ CREATE TABLE "awards" (
 );
 
 CREATE TABLE "club_years" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "start_date" timestamp,
   "club_name" varchar,
   "end_date" timestamp,
+  "label" varchar UNIQUE,
   "created_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "club_years_staff" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "club_year_id" integer NOT NULL,
   "staff_id" integer NOT NULL,
   "staff_role" staff_role,
@@ -113,7 +114,7 @@ CREATE TABLE "club_years_staff" (
 );
 
 CREATE TABLE "classes" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "class" adventurer_class,
   "club_year_id" integer NOT NULL,
   "instructor_id" integer NOT NULL,
@@ -121,7 +122,7 @@ CREATE TABLE "classes" (
 );
 
 CREATE TABLE "events" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "club_year" integer NOT NULL,
   "title" varchar,
   "award_ceremony" boolean NOT NULL DEFAULT false,
@@ -130,7 +131,7 @@ CREATE TABLE "events" (
 );
 
 CREATE TABLE "events_awards" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "award_id" integer NOT NULL,
   "event_id" integer NOT NULL,
   "class_id" integer NOT NULL,
@@ -138,7 +139,7 @@ CREATE TABLE "events_awards" (
 );
 
 CREATE TABLE "classes_children" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "club_year" integer NOT NULL,
   "class_id" integer NOT NULL,
   "child_id" integer NOT NULL,
@@ -146,14 +147,14 @@ CREATE TABLE "classes_children" (
 );
 
 CREATE TABLE "events_children" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "event_id" integer NOT NULL,
   "child_id" integer NOT NULL,
   "created_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "awards_children" (
-  "id" integer PRIMARY KEY,
+  "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "award_id" integer NOT NULL,
   "child_id" integer NOT NULL,
   "awarded_on" timestamp,
