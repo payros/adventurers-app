@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
-
-// import clubYearService from "@/services/clubYearService"
+import clubYearService from "@/services/clubYearService"
 
 const Home = async () => {
 

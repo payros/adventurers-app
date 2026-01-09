@@ -1,0 +1,5 @@
+SELECT cy.label, ch.first_name, ch.last_name, cl.class
+FROM adv_db.classes_children AS cc
+JOIN adv_db.club_years AS cy ON cc.club_year_id = cy.id
+JOIN adv_db.children AS ch ON cc.child_id = ch.id
+JOIN adv_db.classes AS cl ON cc.class_id = cl.id
