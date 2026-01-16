@@ -1,20 +1,78 @@
 "use client"
 import {
   AbsoluteCenter,
-  Card,
-  Table, 
-  Skeleton
 } from "@chakra-ui/react"
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react"
-import { fromSnakeCaseToTitleCase } from "@/utils/stringUtils";
+import { fromSnakeCaseToTitleCase } from "@/utils/stringUtils"
+import { fromDateOfBirthToAge } from "@/utils/dateUtils";
+import TableCard from "@/components/TableCard";
 
 // Colocar cartão e tabela com informações do clube
 
 const View = () => {
+  const childrenHeaders = [
+    { key: 'name', label: 'Name', sortable: true },
+    { key: 'age', label: 'Age', sortable: true },
+    { key: 'class', label: 'Class', sortable: true }
+  ]
+
   const clubYearLabel = useParams()['club_year_label'];
+  const [rawChildren, setRawChildren] = useState([]);
   const [children, setChildren] = useState([]);
   const [loadingChildren, setLoadingChildren] = useState(true);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState('asc');
+
+
+  function transformChildenData(rawChildren) {
+    return rawChildren.map((child) => ({
+      id: child.id,
+      name: `${child.firstName} ${child.lastName}`,
+      age: fromDateOfBirthToAge(child.dateOfBirth),
+      class: fromSnakeCaseToTitleCase(child.class)
+    }));
+  }
+
+  function sortChildren(childrenList) {
+    if (sortBy) {
+      let order = 0;
+      const orderDirection = sortDirection === 'asc' ? 1 : -1;
+      const sortedChildren = [...childrenList].sort((a, b) => {
+        switch(sortBy) {
+          case 'name':
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            order = nameA.localeCompare(nameB);
+            break;
+          case 'age':
+            order = a.age - b.age;
+            break;
+          case 'class':
+            const classA = a.class.toLowerCase();
+            const classB = b.class.toLowerCase();
+            order = classA.localeCompare(classB);
+            break;
+          default:
+            order = 0;
+        }
+        return order * orderDirection;
+      });
+      return sortedChildren
+    }
+
+    return childrenList;
+  }
+
+  function setChildrenSorting(by) {
+    if (sortBy === by) {
+      // Toggle sort direction
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(by);
+      setSortDirection('asc');
+    }
+  }
 
   useEffect(() => {
     // Fetch children data from the API
@@ -22,49 +80,22 @@ const View = () => {
     fetch(`/api/club-years/${clubYearLabel}/children`)
       .then(res => res.json())
       .then(data => {
-        setChildren(data);
+        setRawChildren(data);
         setLoadingChildren(false);
       })
   }, [clubYearLabel])
 
+  useEffect(() => {
+    let childrenList = transformChildenData(rawChildren);
+    childrenList = sortChildren(childrenList);
+    setChildren(childrenList);
+  }, [sortBy, sortDirection, rawChildren]);
 
     return (
     <AbsoluteCenter>
-                  <Card.Root maxW="sm">
-    <Card.Header>
-      <Card.Title>Adventurers</Card.Title>
-    </Card.Header>
-    <Card.Body>
-          <Table.Root size="sm">
-      <Table.Header>
-        <Table.Row>
-          <Table.ColumnHeader>First Name</Table.ColumnHeader>
-          <Table.ColumnHeader>Last Name</Table.ColumnHeader>
-          <Table.ColumnHeader>Class</Table.ColumnHeader>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {loadingChildren ? (<><Table.Row>
-            <Table.Cell colSpan={4}><Skeleton height="5" /></Table.Cell>
-
-          </Table.Row><Table.Row>
-            <Table.Cell colSpan={4}><Skeleton height="5" /></Table.Cell>
-
-          </Table.Row><Table.Row>
-            <Table.Cell colSpan={4}><Skeleton height="5" /></Table.Cell>
-
-          </Table.Row></>)
-         : children.map((child) => (
-          <Table.Row key={child.id}>
-            <Table.Cell>{child.firstName}</Table.Cell>
-            <Table.Cell>{child.lastName}</Table.Cell>
-            <Table.Cell>{fromSnakeCaseToTitleCase(child.class)}</Table.Cell>
-          </Table.Row>
-        )) }
-      </Table.Body>
-    </Table.Root>
-      </Card.Body>
-      </Card.Root>
+      <TableCard title="Children" sortBy={sortBy} sortDirection={sortDirection} headers={childrenHeaders} data={children} loading={loadingChildren} handleSort={(by) => setChildrenSorting(by)}></TableCard>
+      <TableCard title="Class" sortBy={sortBy} sortDirection={sortDirection} headers={childrenHeaders} data={children} loading={loadingChildren} handleSort={(by) => setChildrenSorting(by)}></TableCard>
+      <TableCard title="Events" sortBy={sortBy} sortDirection={sortDirection} headers={childrenHeaders} data={children} loading={loadingChildren} handleSort={(by) => setChildrenSorting(by)}></TableCard>
      </AbsoluteCenter>
   )
 }
