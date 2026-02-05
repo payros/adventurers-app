@@ -91,6 +91,12 @@ const View = () => {
     setChildren(childrenList);
   }, [sortBy, sortDirection, rawChildren]);
 
+
+//******************
+// Render the dashboard view **********
+//******************
+
+
     return (
     <AbsoluteCenter>
       <TableCard title="Children" sortBy={sortBy} sortDirection={sortDirection} headers={childrenHeaders} data={children} loading={loadingChildren} handleSort={(by) => setChildrenSorting(by)}></TableCard>
