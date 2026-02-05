@@ -123,7 +123,7 @@ CREATE TABLE "classes" (
 
 CREATE TABLE "events" (
   "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  "club_year" integer NOT NULL,
+  "club_year_id" integer NOT NULL,
   "title" varchar,
   "award_ceremony" boolean NOT NULL DEFAULT false,
   "event_date" timestamp,
@@ -140,7 +140,7 @@ CREATE TABLE "events_awards" (
 
 CREATE TABLE "classes_children" (
   "id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  "club_year" integer NOT NULL,
+  "club_year_id" integer NOT NULL,
   "class_id" integer NOT NULL,
   "child_id" integer NOT NULL,
   "created_at" timestamp DEFAULT (now())
@@ -173,7 +173,7 @@ ALTER TABLE "classes" ADD FOREIGN KEY ("club_year_id") REFERENCES "club_years" (
 
 ALTER TABLE "classes" ADD FOREIGN KEY ("instructor_id") REFERENCES "staff" ("id");
 
-ALTER TABLE "events" ADD FOREIGN KEY ("club_year") REFERENCES "club_years" ("id");
+ALTER TABLE "events" ADD FOREIGN KEY ("club_year_id") REFERENCES "club_years" ("id");
 
 ALTER TABLE "events_awards" ADD FOREIGN KEY ("award_id") REFERENCES "awards" ("id");
 
@@ -181,7 +181,7 @@ ALTER TABLE "events_awards" ADD FOREIGN KEY ("event_id") REFERENCES "events" ("i
 
 ALTER TABLE "events_awards" ADD FOREIGN KEY ("class_id") REFERENCES "classes" ("id");
 
-ALTER TABLE "classes_children" ADD FOREIGN KEY ("club_year") REFERENCES "club_years" ("id");
+ALTER TABLE "classes_children" ADD FOREIGN KEY ("club_year_id") REFERENCES "club_years" ("id");
 
 ALTER TABLE "classes_children" ADD FOREIGN KEY ("class_id") REFERENCES "classes" ("id");
 
