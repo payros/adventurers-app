@@ -13,9 +13,25 @@ async function listByClubYear(clubYearLabel) {
   }
 
   return []
+}     
+
+
+async function create(event) {
+  // Call the database and insert a new event, returning the created event
+  try {
+    const result = await sql`
+      INSERT INTO adv_db.events (title, event_date, award_ceremony,club_year_id)
+      VALUES (${event.title}, ${event.event_date}, ${event.award_ceremony}, (SELECT id FROM adv_db.club_years WHERE label = ${event.club_year_label}))
+      RETURNING *`
+    return result
+  } catch (err) {
+    console.error(err)
+  }
 }
 
+
 const eventsService = {
+  create,
   listByClubYear,
 }
 
