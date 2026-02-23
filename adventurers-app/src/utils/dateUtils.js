@@ -12,4 +12,8 @@ function fromDateOfBirthToAge(dateOfBirth) {
   return age
 }
 
-export { fromDateOfBirthToAge }
+function fromDateToString(date) {
+  return new Date(date).toLocaleDateString()
+}
+
+export { fromDateOfBirthToAge, fromDateToString }

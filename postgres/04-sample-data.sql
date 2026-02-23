@@ -51,3 +51,12 @@ VALUES (1, 1, 1),
        (1, 2, 8),
        (1, 3, 9),
        (1, 4, 10);
+
+INSERT INTO events (club_year_id, title, event_date)
+VALUES (1, 'Summer Picnic', '2025-07-15'),
+       (1, 'Fall Festival', '2025-10-05'),
+       (1, 'Winter Wonderland', '2025-12-20'),
+       (1, 'Spring Cleanup', '2026-03-10'),
+       (1, 'Regular Meeting', '2025-09-01'),
+       (1, 'Easter Egg Hunt', '2026-04-05');
+ 
