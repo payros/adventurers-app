@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TableCell, Card, Table, Skeleton, Button, Spacer, Icon, Text } from '@chakra-ui/react'
+import { TableCell, Card, Table, Skeleton, Button, Spacer, Icon, Text, Input } from '@chakra-ui/react'
 import { FaCaretDown, FaCaretUp, FaExternalLinkAlt, FaArrowRight } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -18,6 +18,8 @@ function TableCard({
   onRowClick,
   href,
   action,
+  handleSearch,
+  searchPlaceholder = 'Search...',
   maxH = '320px',
   width = 'small',
 }) {
@@ -31,15 +33,8 @@ function TableCard({
   return (
     <Card.Root className="glass-card" style={widthStyle}>
       <Card.Header pb={2}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '0.5rem',
-          }}
-        >
-          <div>
+        <div className={`card-header-inner${width === 'small' ? ' card-header-inner--stacked' : ''}`}>
+          <div style={{ flex: '1 1 auto' }}>
             {href ? (
               <Link href={href} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <span
@@ -74,6 +69,11 @@ function TableCard({
             <Button asChild size="md" variant="outline" colorPalette="brand">
               <Link href={action.href}>{action.label}</Link>
             </Button>
+          )}
+          {handleSearch && (
+            <div className="card-header-search">
+              <Input size="sm" placeholder={searchPlaceholder} onChange={(e) => handleSearch(e.target.value)} />
+            </div>
           )}
         </div>
       </Card.Header>
