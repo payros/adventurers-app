@@ -74,8 +74,8 @@ const View = ({ event: serverEvent, clubYear }) => {
 
   const classes = children
     .reduce((acc, child) => {
-      if (!acc.includes(child.class)) {
-        acc.push(child.class)
+      if (!acc.includes(child.classSlug)) {
+        acc.push(child.classSlug)
       }
       return acc
     }, [])
@@ -101,14 +101,14 @@ const View = ({ event: serverEvent, clubYear }) => {
       contentLoading={loadingEvent || loadingChildren}
     >
       <Stack direction="column" gap="2">
-        {classes.map((className) => (
-          <Box key={className} p="2">
+        {classes.map((classSlug) => (
+          <Box key={classSlug} p="2">
             <Heading fontWeight="bold" size="md">
-              {fromSnakeCaseToTitleCase(className)}
+              {fromSnakeCaseToTitleCase(classSlug)}
             </Heading>
             <Stack direction="column" gap="1" mt="2">
               {children
-                .filter((child) => child.class === className)
+                .filter((child) => child.classSlug === classSlug)
                 .map((child) => (
                   <Checkbox.Root
                     key={child.id}

@@ -16,6 +16,7 @@ export function transformChild(c, clubYear = null) {
   }
   if (clubYear?.label) {
     base.class = fromSnakeCaseToTitleCase(c.class)
+    base.classSlug = c.class
     base.grade = c.grade ? fromSnakeCaseToTitleCase(c.grade) : '—'
     base.attendance = c.attendance != null ? `${c.attendance}%` : '—'
     base.awardsEarned = c.awardsEarned ?? 0
