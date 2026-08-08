@@ -22,7 +22,8 @@ export default function View({ clubYear }) {
   const clubYearLabel = useParams()['club_year_label']
   const router = useRouter()
   const [sort, setSort] = useState({ by: null, direction: 'asc' })
-  const { children, loading: loadingChildren } = useChildren(clubYear, sort)
+  const [filter, setFilter] = useState('')
+  const { children, loading: loadingChildren } = useChildren(clubYear, { ...sort, filter })
 
   function handleSort(by) {
     setSort((prev) => ({
@@ -46,7 +47,9 @@ export default function View({ clubYear }) {
       sortBy={sort.by}
       sortDirection={sort.direction}
       handleSort={handleSort}
+      handleSearch={(val) => setFilter(val)}
       onRowClick={(item) => router.push(`/${clubYearLabel}/adventurers/${item.id}`)}
+      searchPlaceholder="Search by name..."
     />
   )
 }

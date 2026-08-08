@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fromSnakeCaseToTitleCase } from '@/utils/stringUtils'
 import { fromDateOfBirthToAge } from '@/utils/dateUtils'
+import { filterByProps } from '@/utils/arrayUtils'
 
 export function transformChild(c, clubYear = null) {
   const base = {
@@ -45,13 +46,14 @@ function sortChildren(childrenList, by, direction) {
   })
 }
 
-function useChildren(clubYear = null, { by, direction } = {}, initialData = null) {
+function useChildren(clubYear = null, { by, direction, filter } = {}, initialData = null) {
   const clubYearLabel = clubYear?.label ?? null
   const [rawChildren, setRawChildren] = useState(initialData ?? [])
   const [children, setChildren] = useState(() => {
     if (!initialData) return []
     let list = transform(initialData, clubYear)
-    return sortChildren(list, by, direction)
+    list = sortChildren(list, by, direction)
+    return filterByProps(list, ['name'], filter)
   })
   const [loading, setLoading] = useState(initialData === null)
 
@@ -65,19 +67,21 @@ function useChildren(clubYear = null, { by, direction } = {}, initialData = null
         setRawChildren(data)
         let childrenList = transform(data, clubYear)
         childrenList = sortChildren(childrenList, by, direction)
+        childrenList = filterByProps(childrenList, ['name'], filter)
         setChildren(childrenList)
         setLoading(false)
       })
       .catch(() => setLoading(false))
   }, [clubYearLabel])
 
-  // Re-sort/re-transform whenever sort or endDate changes
+  // Re-sort/re-transform/re-filter whenever sort, endDate, or filter changes
   useEffect(() => {
     if (rawChildren.length === 0) return
     let childrenList = transform(rawChildren, clubYear)
     childrenList = sortChildren(childrenList, by, direction)
+    childrenList = filterByProps(childrenList, ['name'], filter)
     setChildren(childrenList)
-  }, [by, direction, clubYear?.endDate])
+  }, [by, direction, clubYear?.endDate, filter])
 
   return { children, loading }
 }
