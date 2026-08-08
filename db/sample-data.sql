@@ -95,6 +95,17 @@ VALUES (1, 'Summer Picnic', '2025-07-15'),
        (1, 'Regular Meeting', '2025-09-01'),
        (1, 'Easter Egg Hunt', '2026-04-05');
 
+-- events_awards: link awards to events + classes for 25-26
+-- little_lambs (class_id=1) gets awards from Summer Picnic (event_id=1) and Fall Festival (event_id=2)
+-- eager_beavers (class_id=2) gets awards from Regular Meeting (event_id=5)
+INSERT INTO events_awards (award_id, event_id, class_id)
+VALUES (1, 1, 1),
+       (2, 1, 1),
+       (3, 2, 1),
+       (4, 2, 1),
+       (22, 5, 2),
+       (23, 5, 2);
+
 -- =============================================
 -- Club Year 2: 24-25
 -- =============================================
