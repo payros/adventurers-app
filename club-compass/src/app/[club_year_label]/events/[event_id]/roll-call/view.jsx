@@ -3,6 +3,7 @@ import { Stack, Checkbox, Box, Heading } from '@chakra-ui/react'
 import { useParams, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { fromSnakeCaseToTitleCase } from '@/utils/stringUtils'
+import { ADVENTURER_CLASSES } from '@/utils/consts'
 import useChildren from '@/hooks/useChildren'
 import FormPage from '@/components/pages/FormPage'
 
@@ -71,12 +72,14 @@ const View = ({ event: serverEvent, clubYear }) => {
     setSelectedChildren((prev) => (isChecked ? [...prev, childId] : prev.filter((id) => id !== childId)))
   }
 
-  const classes = children.reduce((acc, child) => {
-    if (!acc.includes(child.class)) {
-      acc.push(child.class)
-    }
-    return acc
-  }, [])
+  const classes = children
+    .reduce((acc, child) => {
+      if (!acc.includes(child.class)) {
+        acc.push(child.class)
+      }
+      return acc
+    }, [])
+    .sort((a, b) => (ADVENTURER_CLASSES[a]?.order ?? 99) - (ADVENTURER_CLASSES[b]?.order ?? 99))
 
   const breadcrumbs = [
     { label: 'Events', href: `/${clubYearLabel}/events` },
