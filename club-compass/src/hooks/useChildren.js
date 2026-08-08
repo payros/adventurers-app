@@ -66,23 +66,19 @@ function useChildren(clubYear = null, { by, direction, filter } = {}, initialDat
       .then((res) => res.json())
       .then((data) => {
         setRawChildren(data)
-        let childrenList = transform(data, clubYear)
-        childrenList = sortChildren(childrenList, by, direction)
-        childrenList = filterByProps(childrenList, ['name'], filter)
-        setChildren(childrenList)
         setLoading(false)
       })
       .catch(() => setLoading(false))
   }, [clubYearLabel])
 
-  // Re-sort/re-transform/re-filter whenever sort, endDate, or filter changes
+  // Recompute derived list whenever raw data or sort/filter/transform inputs change
   useEffect(() => {
     if (rawChildren.length === 0) return
     let childrenList = transform(rawChildren, clubYear)
     childrenList = sortChildren(childrenList, by, direction)
     childrenList = filterByProps(childrenList, ['name'], filter)
     setChildren(childrenList)
-  }, [by, direction, clubYear?.endDate, filter])
+  }, [rawChildren, by, direction, clubYear?.endDate, filter])
 
   return { children, loading }
 }
