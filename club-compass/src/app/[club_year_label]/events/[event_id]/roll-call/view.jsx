@@ -11,7 +11,7 @@ const View = ({ event: serverEvent, clubYear }) => {
   const router = useRouter()
   const clubYearLabel = useParams()['club_year_label']
   const eventId = useParams()['event_id']
-  const { children, loadingChildren } = useChildren(clubYear, {
+  const { children, loading: loadingChildren } = useChildren(clubYear, {
     by: null,
     direction: 'asc',
   })
