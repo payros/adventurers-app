@@ -17,7 +17,7 @@ export default function DashboardPage({ breadcrumbs = [], actions, cards = [], e
         {extraContent}
         <div className="cards-grid" style={{ marginTop: extraContent ? '1.25rem' : 0 }}>
           {cards.map((card, i) => (
-            <TableCard key={i} {...card} maxH={card.maxH ?? '300px'} />
+            <TableCard key={i} {...card} maxH={card.maxH ?? '300px'} hideHeaders={true} />
           ))}
         </div>
       </PageTransition>

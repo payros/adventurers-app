@@ -10,9 +10,11 @@ import {
   MenuPositioner,
   MenuContent,
   MenuItem,
+  Skeleton,
 } from '@chakra-ui/react'
 import { FiLogOut, FiSettings } from 'react-icons/fi'
 import Image from 'next/image'
+import { useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import Breadcrumbs from './Breadcrumbs'
 import { authClient } from '@/lib/auth-client'
@@ -40,6 +42,7 @@ export default function AppHeader({ breadcrumbs = [] }) {
   // Use the most recent name if available, otherwise fallback to env variable or default
   const clubName = (!loading && clubYear?.clubName) || FALLBACK_CLUB_NAME
   const homeHref = params?.club_year_label ? `/${params.club_year_label}/dashboard` : '/directories'
+  const [logoLoaded, setLogoLoaded] = useState(false)
 
   const handleLogout = async () => {
     await authClient.signOut()
@@ -60,19 +63,32 @@ export default function AppHeader({ breadcrumbs = [] }) {
           cursor="pointer"
           onClick={() => router.push(homeHref)}
         >
+          {!logoLoaded && (
+            <Skeleton
+              style={{ height: '118px', width: '80px', marginTop: '20px', borderRadius: '8px', flexShrink: 0 }}
+            />
+          )}
           <Image
             src="/img/logo.png"
             alt="Club logo"
             width={0}
             height={0}
             sizes="100vw"
-            style={{ height: '118px', width: 'auto', paddingTop: '20px' }}
+            onLoad={() => setLogoLoaded(true)}
+            style={{
+              height: '118px',
+              width: 'auto',
+              paddingTop: '20px',
+              visibility: logoLoaded ? 'visible' : 'hidden',
+              position: logoLoaded ? 'static' : 'absolute',
+            }}
           />
           <Box display="flex" flexDirection="column" minWidth={0} overflow="hidden">
             <Text
               fontWeight={800}
               fontSize={{ base: '3xl', md: '5xl', lg: '6xl' }}
-              color="white"
+              color="#2163cb"
+              fontWeight={600}
               whiteSpace="nowrap"
               flexShrink={0}
             >
@@ -89,7 +105,7 @@ export default function AppHeader({ breadcrumbs = [] }) {
           <MenuTrigger asChild>
             <HStack gap={2} flexShrink={0} cursor="pointer" align="center">
               <Text
-                color="rgba(255,255,255,1)"
+                color="#1c3450"
                 fontSize="lg"
                 fontWeight={500}
                 display={{ base: 'none', md: 'none', lg: 'block' }}
@@ -111,7 +127,7 @@ export default function AppHeader({ breadcrumbs = [] }) {
                   </Avatar.Fallback>
                 </Avatar.Root>
                 <Text
-                  color="rgba(255,255,255,1)"
+                  color="#1c3450"
                   fontSize="md"
                   fontWeight={500}
                   display={{ base: 'none', md: 'block', lg: 'none' }}

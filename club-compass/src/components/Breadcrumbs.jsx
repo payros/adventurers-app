@@ -55,7 +55,7 @@ export default function Breadcrumbs({ items = [] }) {
                   onSelect={(details) => handleSelectYear(details.value)}
                 >
                   <MenuTrigger asChild>
-                    <Button className="breadcrumb-year-trigger" variant="ghost">
+                    <Button className="breadcrumb-year-trigger" style={{ height: '24px' }}>
                       {currentClubYearLabel}
                       {yearMenuOpen ? (
                         <FaChevronDown style={{ fontSize: '1.2rem' }} />
@@ -75,7 +75,7 @@ export default function Breadcrumbs({ items = [] }) {
                   </MenuPositioner>
                 </MenuRoot>
               ) : (
-                <Breadcrumb.CurrentLink style={{ color: '#fff', fontWeight: 600, fontSize: '2rem' }}>
+                <Breadcrumb.CurrentLink style={{ color: '#1c3450', fontWeight: 600, fontSize: '2rem' }}>
                   {currentClubYearLabel}
                 </Breadcrumb.CurrentLink>
               )}
@@ -83,7 +83,7 @@ export default function Breadcrumbs({ items = [] }) {
             {dropdownYears.length === 0 && (
               <Breadcrumb.Separator
                 hideBelow={items.length > 0 ? 'md' : undefined}
-                style={{ color: 'rgba(255,255,255,0.75)' }}
+                style={{ color: '#1c3450' }}
                 ml={2}
                 mr={1}
               >
@@ -92,7 +92,7 @@ export default function Breadcrumbs({ items = [] }) {
             )}
             <Breadcrumb.Item hideBelow={items.length > 0 ? 'lg' : undefined}>
               <Breadcrumb.Link asChild>
-                <Link href={`/${currentClubYearLabel}/dashboard`} style={{ color: 'rgba(255,255,255,0.75)' }}>
+                <Link href={`/${currentClubYearLabel}/dashboard`} style={{ color: '#1c3450' }}>
                   Dashboard
                 </Link>
               </Breadcrumb.Link>
@@ -101,7 +101,7 @@ export default function Breadcrumbs({ items = [] }) {
         ) : (
           <Breadcrumb.Item>
             <Breadcrumb.Link asChild>
-              <Link href="/directories" style={{ color: 'rgba(255,255,255,0.75)' }}>
+              <Link href="/directories" style={{ color: '#1c3450' }}>
                 Directories
               </Link>
             </Breadcrumb.Link>
@@ -110,7 +110,7 @@ export default function Breadcrumbs({ items = [] }) {
         {items.length > 0 && (
           <Breadcrumb.Separator
             hideBelow={dropdownYears.length > 0 ? 'lg' : undefined}
-            style={{ color: 'rgba(255,255,255,0.75)' }}
+            style={{ color: '#1c3450' }}
             ml={2}
             mr={1}
           >
@@ -124,19 +124,19 @@ export default function Breadcrumbs({ items = [] }) {
             <React.Fragment key={i}>
               <Breadcrumb.Item hideBelow={!isLast ? 'md' : undefined}>
                 {isLast ? (
-                  <Breadcrumb.CurrentLink style={{ color: '#fff', fontWeight: 600 }}>
+                  <Breadcrumb.CurrentLink style={{ color: '#1c3450', fontWeight: 600 }}>
                     {item.label}
                   </Breadcrumb.CurrentLink>
                 ) : (
                   <Breadcrumb.Link asChild>
-                    <Link href={item.href ?? '#'} style={{ color: 'rgba(255,255,255,0.75)' }}>
+                    <Link href={item.href ?? '#'} style={{ color: '#1c3450' }}>
                       {item.label}
                     </Link>
                   </Breadcrumb.Link>
                 )}
               </Breadcrumb.Item>
               {!isLast && (
-                <Breadcrumb.Separator hideBelow="md" style={{ color: 'rgba(255,255,255,0.75)' }} ml={2} mr={1}>
+                <Breadcrumb.Separator hideBelow="md" style={{ color: '#1c3450' }} ml={2} mr={1}>
                   <FaChevronRight style={{ fontSize: '1.2rem' }} />
                 </Breadcrumb.Separator>
               )}
