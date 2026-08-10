@@ -3,6 +3,7 @@ import { useParams, useRouter } from 'next/navigation'
 import ResourcePage from '@/components/pages/ResourcePage'
 import { fromSnakeCaseToTitleCase } from '@/utils/stringUtils'
 import { transformClass } from '@/utils/transformUtils'
+import { fromDateToString } from '@/utils/dateUtils'
 
 export default function View({ classData }) {
   const { club_year_label: clubYearLabel, class_name: className } = useParams()
@@ -59,7 +60,7 @@ export default function View({ classData }) {
       data: (cls?.events ?? []).map((e) => ({
         id: e.id,
         name: e.name ?? '—',
-        eventDate: e.eventDate ?? '—',
+        eventDate: e.eventDate ? fromDateToString(e.eventDate) : '—',
       })),
       loading,
     },

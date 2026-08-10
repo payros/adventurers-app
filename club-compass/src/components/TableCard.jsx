@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { TableCell, Card, Table, Skeleton, Button, Spacer, Icon, Text } from '@chakra-ui/react'
+import { TableCell, Card, Table, Button, Spacer, Icon, Text, Input } from '@chakra-ui/react'
 import { FaCaretDown, FaCaretUp, FaExternalLinkAlt, FaArrowRight } from 'react-icons/fa'
 import * as FaIcons from 'react-icons/fa'
 import { motion } from 'framer-motion'
@@ -20,6 +19,8 @@ function TableCard({
   href,
   hrefLabel,
   action,
+  handleSearch,
+  searchPlaceholder = 'Search...',
   maxH = '320px',
   width = 'small',
   hideHeaders = false,
@@ -81,6 +82,11 @@ function TableCard({
             >
               <Link href={action.href}>{action.label}</Link>
             </Button>
+          )}
+          {handleSearch && (
+            <div className="card-header-search">
+              <Input size="sm" placeholder={searchPlaceholder} onChange={(e) => handleSearch(e.target.value)} />
+            </div>
           )}
         </div>
       </Card.Header>

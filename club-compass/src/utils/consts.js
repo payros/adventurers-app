@@ -25,10 +25,10 @@ export const GRADE_OPTIONS = [
 export const AWARD_TYPES = ['star', 'chip', 'award', 'florida', 'chesapeake', 'patch', 'pin', 'other']
 
 export const ADVENTURER_CLASSES = {
-  little_lambs: { url: '/img/class_logos/LittleLambLogo.png', padding: '0 15px 15px 0' },
-  eager_beavers: { url: '/img/class_logos/EagerBeaverLogo.png', padding: '0 0 20px 40px' },
-  busy_bees: { url: '/img/class_logos/BusyBeeLogo.png', padding: '0 5px 20px' },
-  sunbeams: { url: '/img/class_logos/SunbeamLogo.png', padding: '0 5px 20px' },
-  builders: { url: '/img/class_logos/BuilderLogo.png', padding: '0 5px 20px' },
-  helping_hands: { url: '/img/class_logos/HelpingHandLogo.png', padding: '0 5px 20px' },
+  little_lambs: { order: 1, url: '/img/class_logos/LittleLambLogo.png', padding: '0 15px 15px 0' },
+  eager_beavers: { order: 2, url: '/img/class_logos/EagerBeaverLogo.png', padding: '0 0 20px 40px' },
+  busy_bees: { order: 3, url: '/img/class_logos/BusyBeeLogo.png', padding: '0 5px 20px' },
+  sunbeams: { order: 4, url: '/img/class_logos/SunbeamLogo.png', padding: '0 5px 20px' },
+  builders: { order: 5, url: '/img/class_logos/BuilderLogo.png', padding: '0 5px 20px' },
+  helping_hands: { order: 6, url: '/img/class_logos/HelpingHandLogo.png', padding: '0 5px 20px' },
 }

@@ -18,6 +18,8 @@ import PageTransition from '@/components/PageTransition'
  * @param {string} sortBy
  * @param {string} sortDirection
  * @param {function} handleSort
+ * @param {function} handleSearch
+ * @param {string} searchPlaceholder
  */
 export default function CollectionPage({
   breadcrumbs = [],
@@ -33,6 +35,8 @@ export default function CollectionPage({
   sortBy,
   sortDirection,
   handleSort,
+  handleSearch,
+  searchPlaceholder,
 }) {
   return (
     <PageLayout breadcrumbs={breadcrumbs} actions={actions} clubName={clubName}>
@@ -48,6 +52,8 @@ export default function CollectionPage({
           sortBy={sortBy}
           sortDirection={sortDirection}
           handleSort={handleSort}
+          handleSearch={handleSearch}
+          searchPlaceholder={searchPlaceholder}
           width="full"
           maxH="calc(100vh - 200px)"
         />
