@@ -59,7 +59,6 @@ export default function View({ parent }) {
       breadcrumbs={breadcrumbs}
       title={name}
       subtitle="Parent / Guardian"
-      loading={loading}
       fields={fields}
       relatedCards={relatedCards}
     />
