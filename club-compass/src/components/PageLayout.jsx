@@ -12,7 +12,7 @@ import AppFooter from './AppFooter'
  */
 export default function PageLayout({ children, breadcrumbs = [], actions = [] }) {
   return (
-    <Box minH="100vh" display="flex" flexDirection="column">
+    <Box className="page-layout" minH="100vh" display="flex" flexDirection="column">
       <AppHeader breadcrumbs={breadcrumbs} />
       <Box className="page-content" flex="1">
         {actions.length > 0 && (

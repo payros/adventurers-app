@@ -1,3 +1,102 @@
-
 // Global styles which apply to every page
-@use './globals.scss';
+@use './globals';
+
+// Component styles
+@use './components/breadcrumbs';
+@use './components/page-layout';
+@use './components/table-card';
+
+// Page styles
+@use './pages/resource-page';
+
+// Theme variable definitions
+:root {
+  /* ==========================================================================
+     Brand
+     ========================================================================== */
+
+  --color-primary: #1f67d8;
+  --color-primary-dark: #0b3b78;
+  --color-primary-light: #4fb7f5;
+
+  /* ==========================================================================
+     Backgrounds
+     ========================================================================== */
+
+  --color-bg: #f7f9fd;
+  --color-bg-top: #eef6ff;
+  --color-bg-middle: #f8fbff;
+  --color-bg-bottom: #f7f9fd;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #fbfcfe;
+
+  /* ==========================================================================
+     Borders & Shadows
+     ========================================================================== */
+
+  --color-border: #e6edf5;
+  --color-border-light: #f2f5fa;
+
+  --shadow-sm: 0 2px 8px rgba(11, 59, 120, 0.05);
+  --shadow-md: 0 8px 24px rgba(11, 59, 120, 0.08);
+  --shadow-lg: 0 16px 40px rgba(11, 59, 120, 0.12);
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+
+  --color-text: #1b2b4a;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-text-on-primary: #ffffff;
+
+  /* ==========================================================================
+     Section Accent Colors
+     ========================================================================== */
+
+  --color-adventurers: #52b266;
+  --color-events: #f97316;
+  --color-staff: #3b82f6;
+  --color-awards: #8b5cf6;
+  --color-classes: #f4b400;
+  --color-actions: #2563eb;
+
+  /* ==========================================================================
+     Status / Badge Colors
+     ========================================================================== */
+
+  --badge-builders-bg: #e8f1ff;
+  --badge-builders-text: #2563eb;
+
+  --badge-busybees-bg: #fff6d8;
+  --badge-busybees-text: #c17c00;
+
+  --badge-eagerbeavers-bg: #eef7ff;
+  --badge-eagerbeavers-text: #2563eb;
+
+  --badge-instructor-bg: #eaf8ef;
+  --badge-instructor-text: #2f855a;
+
+  --badge-associate-bg: #eaf2ff;
+  --badge-associate-text: #2563eb;
+
+  /* ==========================================================================
+     Generic UI States
+     ========================================================================== */
+
+  --color-success: #43a047;
+  --color-warning: #e6a700;
+  --color-danger: #dc2626;
+  --color-info: #2563eb;
+
+  /* ==========================================================================
+     Radius
+     ========================================================================== */
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-pill: 9999px;
+}

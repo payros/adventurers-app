@@ -23,7 +23,7 @@ const FormPage = ({
     <PageLayout breadcrumbs={breadcrumbs}>
       <PageTransition>
         <div style={{ maxWidth, margin: '2rem auto' }}>
-          <Card.Root className="glass-card">
+          <Card.Root className="app-card">
             <Card.Header>
               <HStack justify="space-between" align="flex-start">
                 <div>

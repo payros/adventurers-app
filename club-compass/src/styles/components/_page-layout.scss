@@ -1,0 +1,22 @@
+/* ==========================================================================
+   PageLayout component styles
+   ========================================================================== */
+
+.page-layout {
+  /* Page content area */
+  .page-content {
+    padding: 1.5rem;
+    max-width: min(1400px, 100%);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  /* Action bar (buttons row) */
+  .action-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+}

@@ -1,0 +1,81 @@
+/* ==========================================================================
+   TableCard component styles
+   ========================================================================== */
+
+.table-card {
+  /* Card header search input layout */
+  .card-header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    .card-header-search {
+      flex: 0 0 200px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &--stacked .card-header-search {
+      flex: 1 1 100%;
+    }
+
+    @media (max-width: 640px) {
+      .card-header-search {
+        flex: 1 1 100%;
+      }
+    }
+  }
+
+  /* Table rows hover */
+  .clickable-row {
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  .scroll-area {
+    border: 0.5px solid var(--color-border);
+    border-radius: 20px;
+  }
+
+  /* Table header style */
+  .table-header th {
+    background: var(--color-border);
+    color: var(--color-text);
+
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    button,
+    p {
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.25rem;
+      letter-spacing: 0.08em;
+      height: 34px;
+      text-transform: uppercase;
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      display: inline-flex;
+    }
+  }
+
+  /* Table cells light text */
+  .table {
+    td,
+    th {
+      color: var(--color-text);
+      border-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}

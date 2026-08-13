@@ -1,0 +1,29 @@
+/* ==========================================================================
+   ResourcePage component styles
+   ========================================================================== */
+
+.resource-page {
+  /* Info card field grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .info-item {
+    label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+
+    p {
+      color: var(--color-text);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: 0.15rem;
+    }
+  }
+}

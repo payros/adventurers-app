@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Breadcrumbs component styles
+   ========================================================================== */
+
+.breadcrumbs {
+  ol,
+  li {
+    color: var(--color-primary);
+  }
+
+  li {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  a,
+  [aria-current='page'] {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
+
+  a,
+  .breadcrumb-year-trigger,
+  [aria-current='page'] {
+    font-size: 2rem;
+  }
+
+  a,
+  .breadcrumb-year-trigger {
+    color: var(--color-primary);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-primary-dark);
+      text-decoration: underline;
+    }
+  }
+
+  .breadcrumb-year-trigger {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    color: var(--color-primary);
+  }
+
+  [aria-current='page'] {
+    color: var(--color-text-on-primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 48em) {
+    a,
+    .breadcrumb-year-trigger,
+    [aria-current='page'] {
+      font-size: 1.25rem;
+    }
+  }
+}

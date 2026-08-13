@@ -37,7 +37,7 @@ function TableCard({
   const FaIcon = icon ? FaIcons[icon] : null
   return (
     <Card.Root
-      className="glass-card"
+      className="app-card table-card"
       style={{
         ...widthStyle,
         ...(accentColor ? { borderTop: `3px solid ${accentColor}` } : {}),
@@ -91,10 +91,10 @@ function TableCard({
         </div>
       </Card.Header>
       <Card.Body pt={0} mt={3} pb={3}>
-        <Table.ScrollArea lob className="glass-scrollarea" height={maxH}>
-          <Table.Root size="sm" stickyHeader className="glass-table">
+        <Table.ScrollArea lob className="scroll-area" height={maxH}>
+          <Table.Root size="sm" stickyHeader className="table">
             {!hideHeaders && (
-              <Table.Header className="glass-table-header">
+              <Table.Header className="table-header">
                 <Table.Row bg="transparent">
                   {headers.map((header) => (
                     <Table.ColumnHeader
